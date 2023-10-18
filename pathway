@@ -1,0 +1,1357 @@
+
+R version 4.3.0 (2023-04-21 ucrt) -- "Already Tomorrow"
+Copyright (C) 2023 The R Foundation for Statistical Computing
+Platform: x86_64-w64-mingw32/x64 (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> data1<-read.csv(file.choose())
+> head(data1)
+    DF
+1 21.0
+2 21.0
+3 22.8
+4 21.4
+5 18.7
+6 18.1
+> hist(data1$DF,
++ main= "AZAM",
++ xlab="Days to flower", col="pink",
++ prob=TRUE)
+> library(ggpubr)
+Loading required package: ggplot2
+Warning messages:
+1: package ‘ggpubr’ was built under R version 4.3.1 
+2: package ‘ggplot2’ was built under R version 4.3.1 
+> library(cowplot)
+
+Attaching package: ‘cowplot’
+
+The following object is masked from ‘package:ggpubr’:
+
+    get_legend
+
+Warning message:
+package ‘cowplot’ was built under R version 4.3.1 
+> data1<-read.csv(file.choose())
+> head(data1)
+    Gen DF
+1 mung1 28
+2 mung1 32
+3 mung1 25
+4 mung1 25
+5 mung1 26
+6 mung1 75
+> data1 = data.frame( Gen = factor(rep(c("mung1", "pea1"), each=200)), DF = c(rnorm(200, 55), rnorm(200, 58))) 
+> head(data1)
+    Gen       DF
+1 mung1 57.00362
+2 mung1 54.15792
+3 mung1 52.86241
+4 mung1 55.46024
+5 mung1 54.97266
+6 mung1 53.33643
+> gghistogram( data1, x = "DF", add = "mean", rug = TRUE, fill = "Gen", palette = c("#00AFBB", "#E7B800"))
+Warning message:
+Using `bins = 30` by default. Pick better value with the argument `bins`. 
+> library (doebioresearch)
+Warning message:
+package ‘doebioresearch’ was built under R version 4.3.1 
+> data<-read.csv(file.choose())
+> head(data)
+  Treatments    PH  SBD   L.P    SW   RW  STW Chl.a Chl.B Total.Chl       TP    FY
+1         T1 23.27 7.51  9.67 13.55 1.02 5.49  0.45  0.18      0.56 4.510000 54.90
+2         T2 20.12 4.98  9.00  9.08 0.87 4.31  0.59  0.31      0.85 6.880000 34.24
+3         T3 27.69 6.50  9.67 10.25 0.62 4.13  0.63  0.25      0.77 6.220000 41.92
+4         T4 20.60 8.92 10.00  8.66 0.62 3.80  0.68  0.26      0.77 4.550000 39.25
+5         T5 18.37 4.25  7.67  4.95 0.48 2.01  0.66  0.31      0.85 2.900000 20.31
+6         T1 21.25 8.55 10.21 12.86 0.94 6.15  0.37  0.24      0.64 4.627067 56.13
+> crd(data[2:8],data$Treatments,1)
+$PH
+$PH[[1]]
+$PH[[1]][[1]]
+Analysis of Variance Table
+
+Response: data2
+          Df  Sum Sq Mean Sq F value    Pr(>F)    
+trt        4 140.876  35.219   38.12 5.027e-06 ***
+Residuals 10   9.239   0.924                      
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+$PH[[1]][[2]]
+[1] "The treatment means of one or more treatments are not same, so go for multiple comparison test"
+
+$PH[[1]][[3]]
+[1] "R Square 0.938"
+
+$PH[[1]][[4]]
+
+        Shapiro-Wilk normality test
+
+data:  model$residuals
+W = 0.86624, p-value = 0.02973
+
+
+$PH[[1]][[5]]
+[1] "Normality assumption is violated"
+
+$PH[[1]][[6]]
+[1] "SEm 0.5549 , SEd 0.7848"
+
+$PH[[1]][[7]]
+$PH[[1]][[7]][[1]]
+    MSerror Df     Mean       CV  t.value      LSD
+  0.9239022 10 21.39792 4.492018 2.228139 1.748677
+
+$PH[[1]][[7]][[2]]
+      data2 groups
+T3 26.79792      a
+T1 22.52125      b
+T4 19.85458      c
+T2 19.84458      c
+T5 17.97125      d
+
+
+
+
+$SBD
+$SBD[[1]]
+$SBD[[1]][[1]]
+Analysis of Variance Table
+
+Response: data2
+          Df Sum Sq Mean Sq F value    Pr(>F)    
+trt        4 38.234  9.5584  39.834 4.097e-06 ***
+Residuals 10  2.400  0.2400                      
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+$SBD[[1]][[2]]
+[1] "The treatment means of one or more treatments are not same, so go for multiple comparison test"
+
+$SBD[[1]][[3]]
+[1] "R Square 0.941"
+
+$SBD[[1]][[4]]
+
+        Shapiro-Wilk normality test
+
+data:  model$residuals
+W = 0.96802, p-value = 0.8277
+
+
+$SBD[[1]][[5]]
+[1] "Normality assumption is not violated"
+
+$SBD[[1]][[6]]
+[1] "SEm 0.2828 , SEd 0.4"
+
+$SBD[[1]][[7]]
+$SBD[[1]][[7]][[1]]
+    MSerror Df     Mean       CV  t.value       LSD
+  0.2399603 10 6.652827 7.363147 2.228139 0.8911818
+
+$SBD[[1]][[7]][[2]]
+      data2 groups
+T4 8.604133      a
+T1 8.100000      a
+T3 6.760000      b
+T2 5.485833      c
+T5 4.314167      d
+
+
+
+
+$L.P
+$L.P[[1]]
+$L.P[[1]][[1]]
+Analysis of Variance Table
+
+Response: data2
+          Df Sum Sq Mean Sq F value    Pr(>F)    
+trt        4 9.9326 2.48316  13.163 0.0005389 ***
+Residuals 10 1.8865 0.18865                      
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+$L.P[[1]][[2]]
+[1] "The treatment means of one or more treatments are not same, so go for multiple comparison test"
+
+$L.P[[1]][[3]]
+[1] "R Square 0.84"
+
+$L.P[[1]][[4]]
+
+        Shapiro-Wilk normality test
+
+data:  model$residuals
+W = 0.85398, p-value = 0.01978
+
+
+$L.P[[1]][[5]]
+[1] "Normality assumption is violated"
+
+$L.P[[1]][[6]]
+[1] "SEm 0.2508 , SEd 0.3546"
+
+$L.P[[1]][[7]]
+$L.P[[1]][[7]][[1]]
+    MSerror Df     Mean       CV  t.value       LSD
+  0.1886467 10 9.277333 4.681677 2.228139 0.7901712
+
+$L.P[[1]][[7]][[2]]
+       data2 groups
+T4 10.066667      a
+T1  9.740000     ab
+T3  9.703333     ab
+T2  9.103333      b
+T5  7.773333      c
+
+
+
+
+$SW
+$SW[[1]]
+$SW[[1]][[1]]
+Analysis of Variance Table
+
+Response: data2
+          Df Sum Sq Mean Sq F value    Pr(>F)    
+trt        4 118.36  29.589   133.3 1.249e-08 ***
+Residuals 10   2.22   0.222                      
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+$SW[[1]][[2]]
+[1] "The treatment means of one or more treatments are not same, so go for multiple comparison test"
+
+$SW[[1]][[3]]
+[1] "R Square 0.982"
+
+$SW[[1]][[4]]
+
+        Shapiro-Wilk normality test
+
+data:  model$residuals
+W = 0.93865, p-value = 0.3658
+
+
+$SW[[1]][[5]]
+[1] "Normality assumption is not violated"
+
+$SW[[1]][[6]]
+[1] "SEm 0.272 , SEd 0.3847"
+
+$SW[[1]][[7]]
+$SW[[1]][[7]][[1]]
+  MSerror Df     Mean       CV  t.value       LSD
+  0.22198 10 8.831333 5.334954 2.228139 0.8571435
+
+$SW[[1]][[7]][[2]]
+       data2 groups
+T1 13.300000      a
+T3  9.680000      b
+T2  8.566667      c
+T4  8.026667      c
+T5  4.583333      d
+
+
+
+
+$RW
+$RW[[1]]
+$RW[[1]][[1]]
+Analysis of Variance Table
+
+Response: data2
+          Df  Sum Sq  Mean Sq F value    Pr(>F)    
+trt        4 0.59836 0.149590  104.37 4.122e-08 ***
+Residuals 10 0.01433 0.001433                      
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+$RW[[1]][[2]]
+[1] "The treatment means of one or more treatments are not same, so go for multiple comparison test"
+
+$RW[[1]][[3]]
+[1] "R Square 0.977"
+
+$RW[[1]][[4]]
+
+        Shapiro-Wilk normality test
+
+data:  model$residuals
+W = 0.90458, p-value = 0.1118
+
+
+$RW[[1]][[5]]
+[1] "Normality assumption is not violated"
+
+$RW[[1]][[6]]
+[1] "SEm 0.0219 , SEd 0.0309"
+
+$RW[[1]][[7]]
+$RW[[1]][[7]][[1]]
+      MSerror Df      Mean       CV  t.value        LSD
+  0.001433333 10 0.6973333 5.429167 2.228139 0.06887637
+
+$RW[[1]][[7]][[2]]
+       data2 groups
+T1 1.0000000      a
+T2 0.8533333      b
+T4 0.5933333      c
+T3 0.5900000      c
+T5 0.4500000      d
+
+
+
+
+$STW
+$STW[[1]]
+$STW[[1]][[1]]
+Analysis of Variance Table
+
+Response: data2
+          Df  Sum Sq Mean Sq F value    Pr(>F)    
+trt        4 21.3196  5.3299  87.004 9.963e-08 ***
+Residuals 10  0.6126  0.0613                      
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+$STW[[1]][[2]]
+[1] "The treatment means of one or more treatments are not same, so go for multiple comparison test"
+
+$STW[[1]][[3]]
+[1] "R Square 0.972"
+
+$STW[[1]][[4]]
+
+        Shapiro-Wilk normality test
+
+data:  model$residuals
+W = 0.93143, p-value = 0.2867
+
+
+$STW[[1]][[5]]
+[1] "Normality assumption is not violated"
+
+$STW[[1]][[6]]
+[1] "SEm 0.1429 , SEd 0.2021"
+
+$STW[[1]][[7]]
+$STW[[1]][[7]][[1]]
+  MSerror Df  Mean       CV  t.value       LSD
+  0.06126 10 4.186 5.912747 2.228139 0.4502826
+
+$STW[[1]][[7]][[2]]
+   data2 groups
+T1  5.82      a
+T2  4.57      b
+T3  4.38     bc
+T4  4.03      c
+T5  2.13      d
+
+
+
+
+$Chl.a
+$Chl.a[[1]]
+$Chl.a[[1]][[1]]
+Analysis of Variance Table
+
+Response: data2
+          Df   Sum Sq   Mean Sq F value   Pr(>F)   
+trt        4 0.082307 0.0205767  6.0283 0.009815 **
+Residuals 10 0.034133 0.0034133                    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+$Chl.a[[1]][[2]]
+[1] "The treatment means of one or more treatments are not same, so go for multiple comparison test"
+
+$Chl.a[[1]][[3]]
+[1] "R Square 0.707"
+
+$Chl.a[[1]][[4]]
+
+        Shapiro-Wilk normality test
+
+data:  model$residuals
+W = 0.84406, p-value = 0.01432
+
+
+$Chl.a[[1]][[5]]
+[1] "Normality assumption is violated"
+
+$Chl.a[[1]][[6]]
+[1] "SEm 0.0337 , SEd 0.0477"
+
+$Chl.a[[1]][[7]]
+$Chl.a[[1]][[7]][[1]]
+      MSerror Df  Mean       CV  t.value       LSD
+  0.003413333 10 0.538 10.85943 2.228139 0.1062884
+
+$Chl.a[[1]][[7]][[2]]
+       data2 groups
+T5 0.5966667      a
+T4 0.5866667      a
+T2 0.5566667      a
+T3 0.5566667      a
+T1 0.3933333      b
+
+
+
+
+> data<-read.csv(file.choose())
+> head(data)
+  Gen Rep    PH  SBD   L.P    SW   RW  STW Chl.a Chl.B Total.Chl    TP    FY
+1  G1   1 23.27 7.51  9.67 13.55 1.02 5.49  0.45  0.18      0.56  4.51 54.90
+2  G2   1 20.12 4.98  9.00  9.08 0.87 4.31  0.59  0.31      0.85  6.88 34.24
+3  G3   1 27.69 6.50  9.67 10.25 0.62 4.13  0.63  0.25      0.77  6.22 41.92
+4  G4   1 20.60 8.92 10.00  8.66 0.62 3.80  0.68  0.26      0.77  4.55 39.25
+5  G5   1 18.37 4.25  7.67  4.95 0.48 2.01  0.66  0.31      0.85  2.90 20.31
+6  G6   1 17.72 4.60  8.00  5.29 0.39 1.88  0.64  0.31      0.87 62.55 18.90
+> rcbd(data[3:8],data$Gen,data$Rep,1)
+$PH
+$PH[[1]]
+Analysis of Variance Table
+
+Response: data2
+            Df Sum Sq Mean Sq F value    Pr(>F)    
+replication  2  26.13 13.0646  115.68 2.257e-15 ***
+trt         16 448.51 28.0317  248.21 < 2.2e-16 ***
+Residuals   32   3.61  0.1129                      
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+$PH[[2]]
+[1] "R Square 0.992"
+
+$PH[[3]]
+
+        Shapiro-Wilk normality test
+
+data:  model$residuals
+W = 0.98365, p-value = 0.7014
+
+
+$PH[[4]]
+[1] "Normality assumption is not violated"
+
+$PH[[5]]
+[1] "SEm 0.194 , SEd 0.2744"
+
+$PH[[6]]
+[1] "The treatment means of one or more treatments are not same, so go for multiple comparison test"
+
+$PH[[7]]
+$PH[[7]][[1]]
+   MSerror Df     Mean       CV  t.value       LSD
+  0.112937 32 19.29203 1.741968 2.036933 0.5589196
+
+$PH[[7]][[2]]
+       data2 groups
+G3  26.79792      a
+G8  22.94458      b
+G1  22.52125      b
+G14 21.67125      c
+G13 20.94792      d
+G15 20.08458      e
+G4  19.85458      e
+G2  19.84458      e
+G10 19.02125      f
+G17 18.14458      g
+G5  17.97125      g
+G7  17.30458      h
+G6  17.23792      h
+G12 16.82458     hi
+G16 16.47792      i
+G9  15.51125      j
+G11 14.80458      k
+
+
+
+$SBD
+$SBD[[1]]
+Analysis of Variance Table
+
+Response: data2
+            Df Sum Sq Mean Sq F value    Pr(>F)    
+replication  2  1.213  0.6067    5.34  0.009973 ** 
+trt         16 80.730  5.0456   44.41 < 2.2e-16 ***
+Residuals   32  3.636  0.1136                      
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+$SBD[[2]]
+[1] "R Square 0.958"
+
+$SBD[[3]]
+
+        Shapiro-Wilk normality test
+
+data:  model$residuals
+W = 0.94571, p-value = 0.02094
+
+
+$SBD[[4]]
+[1] "Normality assumption is violated"
+
+$SBD[[5]]
+[1] "SEm 0.1946 , SEd 0.2752"
+
+$SBD[[6]]
+[1] "The treatment means of one or more treatments are not same, so go for multiple comparison test"
+
+$SBD[[7]]
+$SBD[[7]][[1]]
+    MSerror Df     Mean       CV  t.value       LSD
+  0.1136151 32 5.629082 5.987982 2.036933 0.5605951
+
+$SBD[[7]][[2]]
+       data2 groups
+G4  8.604133      a
+G1  8.100000      a
+G14 6.830000      b
+G3  6.760000      b
+G8  6.013433      c
+G11 5.830000      c
+G9  5.730000      c
+G17 5.655000      c
+G2  5.485833     cd
+G15 4.973333     de
+G16 4.686667     ef
+G6  4.680667     ef
+G7  4.611167     ef
+G13 4.593333     ef
+G12 4.440000     ef
+G10 4.386667      f
+G5  4.314167      f
+
+
+
+$L.P
+$L.P[[1]]
+Analysis of Variance Table
+
+Response: data2
+            Df Sum Sq Mean Sq F value    Pr(>F)    
+replication  2  5.502  2.7508  1524.9 < 2.2e-16 ***
+trt         16 74.627  4.6642  2585.6 < 2.2e-16 ***
+Residuals   32  0.058  0.0018                      
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+$L.P[[2]]
+[1] "R Square 0.999"
+
+$L.P[[3]]
+
+        Shapiro-Wilk normality test
+
+data:  model$residuals
+W = 0.92143, p-value = 0.002372
+
+
+$L.P[[4]]
+[1] "Normality assumption is violated"
+
+$L.P[[5]]
+[1] "SEm 0.0245 , SEd 0.0347"
+
+$L.P[[6]]
+[1] "The treatment means of one or more treatments are not same, so go for multiple comparison test"
+
+$L.P[[7]]
+$L.P[[7]][[1]]
+      MSerror Df     Mean        CV  t.value        LSD
+  0.001803922 32 8.921373 0.4760769 2.036933 0.07063826
+
+$L.P[[7]][[2]]
+        data2 groups
+G14 11.433333      a
+G10 10.096667      b
+G4  10.066667      b
+G8   9.793333      c
+G1   9.740000     cd
+G3   9.703333      d
+G7   9.433333      e
+G15  9.110000      f
+G2   9.103333      f
+G11  8.786667      g
+G17  8.466667      h
+G13  8.433333      h
+G9   8.433333      h
+G6   8.073333      i
+G5   7.773333      j
+G12  6.783333      k
+G16  6.433333      l
+
+
+
+$SW
+$SW[[1]]
+Analysis of Variance Table
+
+Response: data2
+            Df  Sum Sq Mean Sq F value    Pr(>F)    
+replication  2   4.878  2.4392  24.169 4.015e-07 ***
+trt         16 283.205 17.7003 175.381 < 2.2e-16 ***
+Residuals   32   3.230  0.1009                      
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+$SW[[2]]
+[1] "R Square 0.989"
+
+$SW[[3]]
+
+        Shapiro-Wilk normality test
+
+data:  model$residuals
+W = 0.94319, p-value = 0.01652
+
+
+$SW[[4]]
+[1] "Normality assumption is violated"
+
+$SW[[5]]
+[1] "SEm 0.1834 , SEd 0.2594"
+
+$SW[[6]]
+[1] "The treatment means of one or more treatments are not same, so go for multiple comparison test"
+
+$SW[[7]]
+$SW[[7]][[1]]
+    MSerror Df     Mean       CV  t.value       LSD
+  0.1009252 32 6.545882 4.853239 2.036933 0.5283614
+
+$SW[[7]][[2]]
+        data2 groups
+G1  13.300000      a
+G3   9.680000      b
+G2   8.566667      c
+G13  8.040000     cd
+G4   8.026667      d
+G17  7.110000      e
+G8   7.030000      e
+G16  6.110000      f
+G15  5.690000     fg
+G14  5.360000     gh
+G6   5.150000      h
+G7   5.116667      h
+G11  5.106667     hi
+G5   4.583333     ij
+G12  4.530000     jk
+G9   4.016667     kl
+G10  3.863333      l
+
+
+
+$RW
+$RW[[1]]
+Analysis of Variance Table
+
+Response: data2
+            Df  Sum Sq  Mean Sq F value    Pr(>F)    
+replication  2 0.03142 0.015712   56.43 3.216e-11 ***
+trt         16 2.34974 0.146859  527.45 < 2.2e-16 ***
+Residuals   32 0.00891 0.000278                      
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+$RW[[2]]
+[1] "R Square 0.996"
+
+$RW[[3]]
+
+        Shapiro-Wilk normality test
+
+data:  model$residuals
+W = 0.96598, p-value = 0.1499
+
+
+$RW[[4]]
+[1] "Normality assumption is not violated"
+
+$RW[[5]]
+[1] "SEm 0.0096 , SEd 0.0136"
+
+$RW[[6]]
+[1] "The treatment means of one or more treatments are not same, so go for multiple comparison test"
+
+$RW[[7]]
+$RW[[7]][[1]]
+       MSerror Df      Mean       CV  t.value        LSD
+  0.0002784314 32 0.4652941 3.586175 2.036933 0.02775174
+
+$RW[[7]][[2]]
+        data2 groups
+G1  1.0000000      a
+G2  0.8533333      b
+G4  0.5933333      c
+G3  0.5900000      c
+G8  0.5800000      c
+G13 0.5400000      d
+G17 0.4933333      e
+G11 0.4666667     ef
+G5  0.4500000      f
+G15 0.3633333      g
+G6  0.3533333      g
+G7  0.3433333      g
+G10 0.3366667     gh
+G14 0.3366667     gh
+G12 0.3133333      h
+G16 0.1566667      i
+G9  0.1400000      i
+
+
+
+$STW
+$STW[[1]]
+Analysis of Variance Table
+
+Response: data2
+            Df Sum Sq Mean Sq F value    Pr(>F)    
+replication  2  1.055  0.5277   98.19 2.207e-14 ***
+trt         16 79.181  4.9488  920.93 < 2.2e-16 ***
+Residuals   32  0.172  0.0054                      
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+$STW[[2]]
+[1] "R Square 0.998"
+
+$STW[[3]]
+
+        Shapiro-Wilk normality test
+
+data:  model$residuals
+W = 0.97461, p-value = 0.3401
+
+
+$STW[[4]]
+[1] "Normality assumption is not violated"
+
+$STW[[5]]
+[1] "SEm 0.0423 , SEd 0.0599"
+
+$STW[[6]]
+[1] "The treatment means of one or more treatments are not same, so go for multiple comparison test"
+
+$STW[[7]]
+$STW[[7]][[1]]
+      MSerror Df     Mean       CV  t.value       LSD
+  0.005373775 32 3.103529 2.362022 2.036933 0.1219189
+
+$STW[[7]][[2]]
+       data2 groups
+G1  5.820000      a
+G2  4.570000      b
+G3  4.380000      c
+G11 4.123333      d
+G4  4.030000      d
+G8  3.816667      e
+G13 3.530000      f
+G16 3.433333      f
+G15 3.253333      g
+G14 2.703333      h
+G17 2.703333      h
+G7  2.150000      i
+G5  2.130000      i
+G6  1.993333      j
+G12 1.643333      k
+G10 1.356667      l
+G9  1.123333      m
+
+
+
+> data<-read.csv(file.choose())
+> head(data)
+  Rep Trt Var    PH   GY
+1   1   1   1 32.10 10.2
+2   1   1   2 27.88 10.1
+3   1   1   3 28.91 10.0
+4   1   2   1 36.28 13.2
+5   1   2   2 24.19 12.3
+6   1   2   3 34.44  9.9
+> frbd2fact(data[4:5],data$Rep,data$Trt,data$Var,1)
+$PH
+$PH[[1]]
+Analysis of Variance Table
+
+Response: dependent.var
+                  Df Sum Sq Mean Sq F value    Pr(>F)    
+replicationvector  3 143.76  47.919  8.3634 0.0005563 ***
+fact.A             2 431.92 215.962 37.6920 3.933e-08 ***
+fact.B             2  10.37   5.187  0.9054 0.4177631    
+fact.A:fact.B      4  20.77   5.192  0.9062 0.4760445    
+Residuals         24 137.51   5.730                      
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+$PH[[2]]
+[1] "R Square 0.815"
+
+$PH[[3]]
+[1] "SEm of A: 0.691 , SEd of A: 0.977 , SEm of B: 0.691 , SEd of B 0.977 , SEm of AB: 1.197 , SEd of AB: 1.693"
+
+$PH[[4]]
+
+        Shapiro-Wilk normality test
+
+data:  model$residuals
+W = 0.92868, p-value = 0.02283
+
+
+$PH[[5]]
+[1] "Normality assumption is violated"
+
+$PH[[6]]
+[1] "The means of one or more levels of first factor are not same, so go for multiple comparison test"
+
+$PH[[7]]
+$PH[[7]][[1]]
+   MSerror Df   Mean       CV  t.value      LSD
+  5.729638 24 31.545 7.588101 2.063899 2.016863
+
+$PH[[7]][[2]]
+  dependent.var groups
+3      35.95833      a
+2      31.17917      b
+1      27.49750      c
+
+
+$PH[[8]]
+[1] "All the second factor level means are same so dont go for any multiple comparison test"
+
+$PH[[9]]
+$PH[[9]][[1]]
+   MSerror Df   Mean       CV  t.value      LSD
+  5.729638 24 31.545 7.588101 2.063899 2.016863
+
+$PH[[9]][[2]]
+  dependent.var groups
+1      32.29333      a
+2      31.28167      a
+3      31.06000      a
+
+
+$PH[[10]]
+[1] "The means of levels of interaction between two factors are same so dont go for any multiple comparison test"
+
+$PH[[11]]
+$PH[[11]][[1]]
+   MSerror Df   Mean       CV  t.value      LSD
+  5.729638 24 31.545 7.588101 2.063899 3.493309
+
+$PH[[11]][[2]]
+    dependent.var groups
+3:2       36.7575      a
+3:1       36.1775     ab
+3:3       34.9400     ab
+2:1       32.6925     bc
+2:3       31.4000     cd
+2:2       29.4450    cde
+1:1       28.0100     de
+1:2       27.6425      e
+1:3       26.8400      e
+
+
+
+$GY
+$GY[[1]]
+Analysis of Variance Table
+
+Response: dependent.var
+                  Df Sum Sq Mean Sq F value Pr(>F)
+replicationvector  3  1.405  0.4684  0.1275 0.9428
+fact.A             2  2.357  1.1786  0.3209 0.7286
+fact.B             2  0.354  0.1769  0.0482 0.9531
+fact.A:fact.B      4  3.199  0.7999  0.2178 0.9259
+Residuals         24 88.147  3.6728               
+
+$GY[[2]]
+[1] "R Square 0.077"
+
+$GY[[3]]
+[1] "SEm of A: 0.553 , SEd of A: 0.782 , SEm of B: 0.553 , SEd of B 0.782 , SEm of AB: 0.958 , SEd of AB: 1.355"
+
+$GY[[4]]
+
+        Shapiro-Wilk normality test
+
+data:  model$residuals
+W = 0.93432, p-value = 0.03392
+
+
+$GY[[5]]
+[1] "Normality assumption is violated"
+
+$GY[[6]]
+[1] "All the first factor level means are same so dont go for any multiple comparison test"
+
+$GY[[7]]
+$GY[[7]][[1]]
+   MSerror Df     Mean       CV  t.value      LSD
+  3.672801 24 11.26389 17.01415 2.063899 1.614773
+
+$GY[[7]][[2]]
+  dependent.var groups
+2      11.50000      a
+1      11.38333      a
+3      10.90833      a
+
+
+$GY[[8]]
+[1] "All the second factor level means are same so dont go for any multiple comparison test"
+
+$GY[[9]]
+$GY[[9]][[1]]
+   MSerror Df     Mean       CV  t.value      LSD
+  3.672801 24 11.26389 17.01415 2.063899 1.614773
+
+$GY[[9]][[2]]
+  dependent.var groups
+2      11.35000      a
+1      11.31667      a
+3      11.12500      a
+
+
+$GY[[10]]
+[1] "The means of levels of interaction between two factors are same so dont go for any multiple comparison test"
+
+$GY[[11]]
+$GY[[11]][[1]]
+   MSerror Df     Mean       CV  t.value      LSD
+  3.672801 24 11.26389 17.01415 2.063899 2.796868
+
+$GY[[11]][[2]]
+    dependent.var groups
+2:3        11.825      a
+1:2        11.775      a
+1:1        11.600      a
+2:2        11.500      a
+2:1        11.175      a
+3:1        11.175      a
+1:3        10.775      a
+3:2        10.775      a
+3:3        10.775      a
+
+
+
+> 
+> utils:::menuInstallPkgs()
+--- Please select a CRAN mirror for use in this session ---
+trying URL 'https://cloud.r-project.org/bin/windows/contrib/4.3/pastecs_1.3.21.zip'
+Content type 'application/zip' length 479495 bytes (468 KB)
+downloaded 468 KB
+
+package ‘pastecs’ successfully unpacked and MD5 sums checked
+
+The downloaded binary packages are in
+        C:\Users\BISWAJIT\AppData\Local\Temp\RtmpgLfDTX\downloaded_packages
+> library(pastecs)
+Warning message:
+package ‘pastecs’ was built under R version 4.3.1 
+> my_data <- read.csv(file.choose())
+> head (my_data)
+     PH  SBD   LPP    SW   RW  STW Chl.a Chl.B Total.Chl    TF    TP    FY
+1 23.27 7.51  9.67 13.55 1.02 5.49  0.45  0.18      0.56 90.33  4.51 54.90
+2 20.12 4.98  9.00  9.08 0.87 4.31  0.59  0.31      0.85 89.66  6.88 34.24
+3 27.69 6.50  9.67 10.25 0.62 4.13  0.63  0.25      0.77 88.89  6.22 41.92
+4 20.60 8.92 10.00  8.66 0.62 3.80  0.68  0.26      0.77 94.55  4.55 39.25
+5 18.37 4.25  7.67  4.95 0.48 2.01  0.66  0.31      0.85 79.88  2.90 20.31
+6 17.72 4.60  8.00  5.29 0.39 1.88  0.64  0.31      0.87 95.67 62.55 18.90
+> res <- stat.desc(my_data) 
+> round(res,2)
+                 PH   SBD    LPP     SW    RW   STW Chl.a Chl.B Total.Chl      TF
+nbr.val       17.00 17.00  17.00  17.00 17.00 17.00 17.00 17.00     17.00   17.00
+nbr.null       0.00  0.00   0.00   0.00  0.00  0.00  0.00  0.00      0.00    0.00
+nbr.na         0.00  0.00   0.00   0.00  0.00  0.00  0.00  0.00      0.00    0.00
+min           15.55  4.25   6.33   3.97  0.18  1.06  0.45  0.18      0.55   13.11
+max           27.69  8.92  11.33  13.55  1.02  5.49  0.68  0.33      0.94   95.67
+range         12.14  4.67   5.00   9.58  0.84  4.43  0.23  0.15      0.39   82.56
+sum          338.42 92.86 150.00 115.61  8.45 49.76 10.11  4.37     12.76 1223.18
+median        19.70  4.98   9.00   6.00  0.48  3.07  0.62  0.26      0.77   79.88
+mean          19.91  5.46   8.82   6.80  0.50  2.93  0.59  0.26      0.75   71.95
+SE.mean        0.76  0.32   0.30   0.61  0.05  0.29  0.02  0.01      0.03    5.75
+CI.mean.0.95   1.62  0.68   0.64   1.29  0.11  0.62  0.04  0.03      0.06   12.18
+var            9.94  1.73   1.57   6.33  0.05  1.47  0.01  0.00      0.01  561.52
+std.dev        3.15  1.31   1.25   2.52  0.21  1.21  0.07  0.05      0.12   23.70
+coef.var       0.16  0.24   0.14   0.37  0.43  0.41  0.12  0.19      0.16    0.33
+                 TP     FY
+nbr.val       17.00  17.00
+nbr.null       0.00   0.00
+nbr.na         0.00   0.00
+min            1.01   9.44
+max           62.55  54.90
+range         61.54  45.46
+sum          264.92 487.62
+median        10.77  27.65
+mean          15.58  28.68
+SE.mean        4.01   2.89
+CI.mean.0.95   8.50   6.13
+var          273.57 142.37
+std.dev       16.54  11.93
+coef.var       1.06   0.42
+> stat.desc(my_data, basic=TRUE, desc=TRUE, norm=TRUE, p=0.95)
+                       PH          SBD         LPP           SW          RW
+nbr.val       17.00000000 17.000000000  17.0000000  17.00000000 17.00000000
+nbr.null       0.00000000  0.000000000   0.0000000   0.00000000  0.00000000
+nbr.na         0.00000000  0.000000000   0.0000000   0.00000000  0.00000000
+min           15.55000000  4.250000000   6.3300000   3.97000000  0.18000000
+max           27.69000000  8.920000000  11.3300000  13.55000000  1.02000000
+range         12.14000000  4.670000000   5.0000000   9.58000000  0.84000000
+sum          338.42000000 92.860000000 150.0000000 115.61000000  8.45000000
+median        19.70000000  4.980000000   9.0000000   6.00000000  0.48000000
+mean          19.90705882  5.462352941   8.8235294   6.80058824  0.49705882
+SE.mean        0.76458455  0.318857715   0.3040014   0.61039492  0.05214350
+CI.mean.0.95   1.62084684  0.675948159   0.6444542   1.29397943  0.11053928
+var            9.93802206  1.728394118   1.5710868   6.33389338  0.04622206
+std.dev        3.15246286  1.314684037   1.2534300   2.51672275  0.21499316
+coef.var       0.15835905  0.240680903   0.1420554   0.37007427  0.43253062
+skewness       0.72704589  1.130315012  -0.2086598   1.09953832  0.77744652
+skew.2SE       0.66125448  1.028031217  -0.1897778   1.00003955  0.70709429
+kurtosis      -0.13117461  0.406500331  -0.4384834   0.56128696  0.14061765
+kurt.2SE      -0.06168871  0.191168719  -0.2062097   0.26396168  0.06612958
+normtest.W     0.94720602  0.843050786   0.9688381   0.88592182  0.92268909
+normtest.p     0.41385724  0.008417217   0.7977703   0.03970706  0.16396897
+                    STW        Chl.a        Chl.B   Total.Chl            TF
+nbr.val      17.0000000 17.000000000 17.000000000 17.00000000   17.00000000
+nbr.null      0.0000000  0.000000000  0.000000000  0.00000000    0.00000000
+nbr.na        0.0000000  0.000000000  0.000000000  0.00000000    0.00000000
+min           1.0600000  0.450000000  0.180000000  0.55000000   13.11000000
+max           5.4900000  0.680000000  0.330000000  0.94000000   95.67000000
+range         4.4300000  0.230000000  0.150000000  0.39000000   82.56000000
+sum          49.7600000 10.110000000  4.370000000 12.76000000 1223.18000000
+median        3.0700000  0.620000000  0.260000000  0.77000000   79.88000000
+mean          2.9270588  0.594705882  0.257058824  0.75058824   71.95176471
+SE.mean       0.2938096  0.017700898  0.012028297  0.02939926    5.74724034
+CI.mean.0.95  0.6228486  0.037524228  0.025498851  0.06232365   12.18360525
+var           1.4675096  0.005326471  0.002459559  0.01469338  561.52311544
+std.dev       1.2114081  0.072982673  0.049593939  0.12121626   23.69647897
+coef.var      0.4138653  0.122720618  0.192928368  0.16149502    0.32933840
+skewness      0.2263962 -0.531570590 -0.245623166 -0.43991480   -0.93254403
+skew.2SE      0.2059092 -0.483468020 -0.223396380 -0.40010629   -0.84815681
+kurtosis     -0.9162699 -1.151914739 -1.326784362 -1.15518503   -0.21561713
+kurt.2SE     -0.4309028 -0.541721735 -0.623959311 -0.54325968   -0.10140029
+normtest.W    0.9715524  0.914314765  0.911556125  0.90990283    0.86397142
+normtest.p    0.8450453  0.118332348  0.106280484  0.09966075    0.01764448
+                       TP          FY
+nbr.val      1.700000e+01  17.0000000
+nbr.null     0.000000e+00   0.0000000
+nbr.na       0.000000e+00   0.0000000
+min          1.010000e+00   9.4400000
+max          6.255000e+01  54.9000000
+range        6.154000e+01  45.4600000
+sum          2.649200e+02 487.6200000
+median       1.077000e+01  27.6500000
+mean         1.558353e+01  28.6835294
+SE.mean      4.011553e+00   2.8939511
+CI.mean.0.95 8.504112e+00   6.1349022
+var          2.735735e+02 142.3741993
+std.dev      1.654006e+01  11.9320660
+coef.var     1.061381e+00   0.4159902
+skewness     1.734786e+00   0.2719245
+skew.2SE     1.577802e+00   0.2473177
+kurtosis     1.996758e+00  -0.7127113
+kurt.2SE     9.390342e-01  -0.3351734
+normtest.W   7.315599e-01   0.9752333
+normtest.p   2.695147e-04   0.9017738
+> utils:::menuInstallPkgs()
+trying URL 'https://cloud.r-project.org/bin/windows/contrib/4.3/variability_0.1.0.zip'
+Content type 'application/zip' length 50475 bytes (49 KB)
+downloaded 49 KB
+
+package ‘variability’ successfully unpacked and MD5 sums checked
+
+The downloaded binary packages are in
+        C:\Users\BISWAJIT\AppData\Local\Temp\RtmpgLfDTX\downloaded_packages
+> library(variability)
+> vardata<-read.csv(file.choose())
+> head(vardata)
+  Gen Rep    PH  SBD   L.P    SW   RW  STW    FY
+1 DS1   1 23.27 7.51  9.67 13.55 1.02 5.49 54.90
+2 DS2   1 18.63 6.09  8.67  6.73 0.43 2.88 28.75
+3 DS3   1 20.12 4.98  9.00  9.08 0.87 4.31 34.24
+4 DS4   1 27.69 6.50  9.67 10.25 0.62 4.13 41.92
+5 DS5   1 20.60 8.92 10.00  8.66 0.62 3.80 39.25
+6 DS6   1 29.02 6.99  9.67 15.23 1.16 7.15 72.29
+> gen.var(vardata[3:9],vardata$Gen,vardata$Rep)
+$PH
+$PH[[1]]
+Analysis of Variance Table
+
+Response: data2
+            Df Sum Sq Mean Sq F value    Pr(>F)    
+replication  2  54.03 27.0131  14.597 2.279e-05 ***
+genotype    18 509.32 28.2954  15.290 8.498e-12 ***
+Residuals   36  66.62  1.8506                      
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+$PH[[2]]
+                                            A
+Maximum                               29.0200
+Minimum                               13.5400
+Grand Mean                            19.8691
+Standard Error of Mean (SEm)           0.7854
+Critical Difference (CD) 5%            2.2527
+Critical Difference (CD) 1%            3.0206
+Environmental Variance                 1.8506
+Genotypic Variance                     8.8149
+Phenotypic Variance                   10.6655
+Environmental Coefficient of Variance  6.8467
+Genotypic Coefficient of Variance     14.9428
+Phenotypic Coefficient of Variance    16.4367
+Heritability (Broad Sense)             0.8265
+Genetic Advance                        5.5602
+Genetic Advance as percentage of mean 27.9842
+
+
+$SBD
+$SBD[[1]]
+Analysis of Variance Table
+
+Response: data2
+            Df Sum Sq Mean Sq F value  Pr(>F)    
+replication  2  1.265  0.6323   4.896 0.01316 *  
+genotype    18 87.696  4.8720  37.725 < 2e-16 ***
+Residuals   36  4.649  0.1291                    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+$SBD[[2]]
+                                            A
+Maximum                                8.9200
+Minimum                                4.1230
+Grand Mean                             5.7546
+Standard Error of Mean (SEm)           0.2075
+Critical Difference (CD) 5%            0.5951
+Critical Difference (CD) 1%            0.7980
+Environmental Variance                 0.1291
+Genotypic Variance                     1.5810
+Phenotypic Variance                    1.7101
+Environmental Coefficient of Variance  6.2448
+Genotypic Coefficient of Variance     21.8498
+Phenotypic Coefficient of Variance    22.7244
+Heritability (Broad Sense)             0.9245
+Genetic Advance                        2.4905
+Genetic Advance as percentage of mean 43.2782
+
+
+$L.P
+$L.P[[1]]
+Analysis of Variance Table
+
+Response: data2
+            Df Sum Sq Mean Sq F value    Pr(>F)    
+replication  2  6.024  3.0121  696.25 < 2.2e-16 ***
+genotype    18 77.698  4.3166  997.79 < 2.2e-16 ***
+Residuals   36  0.156  0.0043                      
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+$L.P[[2]]
+                                            A
+Maximum                               11.8700
+Minimum                                6.1000
+Grand Mean                             8.9437
+Standard Error of Mean (SEm)           0.0380
+Critical Difference (CD) 5%            0.1089
+Critical Difference (CD) 1%            0.1460
+Environmental Variance                 0.0043
+Genotypic Variance                     1.4374
+Phenotypic Variance                    1.4417
+Environmental Coefficient of Variance  0.7354
+Genotypic Coefficient of Variance     13.4052
+Phenotypic Coefficient of Variance    13.4252
+Heritability (Broad Sense)             0.9970
+Genetic Advance                        2.4661
+Genetic Advance as percentage of mean 27.5736
+
+
+$SW
+$SW[[1]]
+Analysis of Variance Table
+
+Response: data2
+            Df Sum Sq Mean Sq F value    Pr(>F)    
+replication  2   4.97  2.4857  27.254 6.209e-08 ***
+genotype    18 488.90 27.1611 297.806 < 2.2e-16 ***
+Residuals   36   3.28  0.0912                      
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+$SW[[2]]
+                                            A
+Maximum                               15.2300
+Minimum                                3.2800
+Grand Mean                             7.3319
+Standard Error of Mean (SEm)           0.1744
+Critical Difference (CD) 5%            0.5001
+Critical Difference (CD) 1%            0.6706
+Environmental Variance                 0.0912
+Genotypic Variance                     9.0233
+Phenotypic Variance                    9.1145
+Environmental Coefficient of Variance  4.1190
+Genotypic Coefficient of Variance     40.9699
+Phenotypic Coefficient of Variance    41.1764
+Heritability (Broad Sense)             0.9900
+Genetic Advance                        6.1570
+Genetic Advance as percentage of mean 83.9752
+
+
+$RW
+$RW[[1]]
+Analysis of Variance Table
+
+Response: data2
+            Df Sum Sq  Mean Sq F value    Pr(>F)    
+replication  2 0.0325 0.016235  51.686  2.62e-11 ***
+genotype    18 3.4600 0.192224 611.988 < 2.2e-16 ***
+Residuals   36 0.0113 0.000314                      
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+$RW[[2]]
+                                            A
+Maximum                                1.1990
+Minimum                                0.1330
+Grand Mean                             0.5304
+Standard Error of Mean (SEm)           0.0102
+Critical Difference (CD) 5%            0.0293
+Critical Difference (CD) 1%            0.0394
+Environmental Variance                 0.0003
+Genotypic Variance                     0.0640
+Phenotypic Variance                    0.0643
+Environmental Coefficient of Variance  3.3416
+Genotypic Coefficient of Variance     47.6993
+Phenotypic Coefficient of Variance    47.8110
+Heritability (Broad Sense)             0.9953
+Genetic Advance                        0.5199
+Genetic Advance as percentage of mean 98.0262
+
+
+$STW
+$STW[[1]]
+Analysis of Variance Table
+
+Response: data2
+            Df  Sum Sq Mean Sq F value    Pr(>F)    
+replication  2   1.526  0.7630  100.64 1.816e-15 ***
+genotype    18 127.290  7.0717  932.67 < 2.2e-16 ***
+Residuals   36   0.273  0.0076                      
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+$STW[[2]]
+                                            A
+Maximum                                8.0080
+Minimum                                1.2800
+Grand Mean                             3.5401
+Standard Error of Mean (SEm)           0.0503
+Critical Difference (CD) 5%            0.1442
+Critical Difference (CD) 1%            0.1933
+Environmental Variance                 0.0076
+Genotypic Variance                     2.3547
+Phenotypic Variance                    2.3623
+Environmental Coefficient of Variance  2.4597
+Genotypic Coefficient of Variance     43.3467
+Phenotypic Coefficient of Variance    43.4166
+Heritability (Broad Sense)             0.9968
+Genetic Advance                        3.1560
+Genetic Advance as percentage of mean 89.1508
+
+
+$FY
+$FY[[1]]
+Analysis of Variance Table
+
+Response: data2
+            Df  Sum Sq Mean Sq  F value    Pr(>F)    
+replication  2    15.2    7.59   56.794 7.333e-12 ***
+genotype    18 11552.0  641.78 4804.624 < 2.2e-16 ***
+Residuals   36     4.8    0.13                       
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+$FY[[2]]
+                                             A
+Maximum                                74.4500
+Minimum                                12.5600
+Grand Mean                             33.6619
+Standard Error of Mean (SEm)            0.2110
+Critical Difference (CD) 5%             0.6052
+Critical Difference (CD) 1%             0.8115
+Environmental Variance                  0.1336
+Genotypic Variance                    213.8811
+Phenotypic Variance                   214.0147
+Environmental Coefficient of Variance   1.0857
+Genotypic Coefficient of Variance      43.4457
+Phenotypic Coefficient of Variance     43.4593
+Heritability (Broad Sense)              0.9994
+Genetic Advance                        30.1174
+Genetic Advance as percentage of mean  89.4702
+
+
+> geno.corr(vardata[3:9],vardata$Gen,vardata$Rep)
+$GenotypicCorrelation
+    PH        SBD       L.P       SW        RW        STW       FY       
+PH  1 **      0.5217 *  0.5551 *  0.7433 ** 0.6542 ** 0.6457 ** 0.6416 **
+SBD 0.5217 *  1 **      0.5786 ** 0.6013 ** 0.5484 *  0.6085 ** 0.6382 **
+L.P 0.5551 *  0.5786 ** 1 **      0.2196 NS 0.3199 NS 0.2312 NS 0.2271 NS
+SW  0.7433 ** 0.6013 ** 0.2196 NS 1 **      0.9137 ** 0.9306 ** 0.9275 **
+RW  0.6542 ** 0.5484 *  0.3199 NS 0.9137 ** 1 **      0.8745 ** 0.8411 **
+STW 0.6457 ** 0.6085 ** 0.2312 NS 0.9306 ** 0.8745 ** 1 **      0.9883 **
+FY  0.6416 ** 0.6382 ** 0.2271 NS 0.9275 ** 0.8411 ** 0.9883 ** 1 **     
+
+$Note1
+[1] "The sig of genotypic correlation was tested using t test (two-tail). The degree of freedom used is number of genotypes - 2"
+
+$Note2
+[1] "If NaNs are produced checkout for negative genotypic variance for one or more traits"
+
+> geno.path(vardata[9],vardata[3:8],vardata$Gen,vardata$Rep)
+$Effects
+          PH     SBD     L.P      SW       RW     STW
+PH  -0.04919 0.02308 0.01260 0.18287 -0.13013 0.60238
+SBD -0.02566 0.04424 0.01313 0.14793 -0.10908 0.56767
+L.P -0.02731 0.02560 0.02270 0.05402 -0.06363 0.21572
+SW  -0.03656 0.02660 0.00498 0.24603 -0.18173 0.86814
+RW  -0.03218 0.02426 0.00726 0.22478 -0.19891 0.81590
+STW -0.03176 0.02692 0.00525 0.22894 -0.17395 0.93294
+
+$Residual
+       [,1]
+[1,] 0.0152
+
+> pheno.path(vardata[9],vardata[3:8],vardata$Gen,vardata$Rep)
+$Effects
+         PH     SBD      L.P      SW       RW     STW
+PH  0.03331 0.02281 -0.01107 0.07267 -0.07650 0.54478
+SBD 0.01497 0.05076 -0.01250 0.06396 -0.06587 0.55907
+L.P 0.01661 0.02858 -0.02220 0.02389 -0.04027 0.21949
+SW  0.02228 0.02989 -0.00488 0.10864 -0.11545 0.88093
+RW  0.01995 0.02618 -0.00700 0.09821 -0.12713 0.82899
+STW 0.01904 0.02978 -0.00511 0.10043 -0.11110 0.95336
+
+$Residual
+       [,1]
+[1,] 0.0215
+
+> 
